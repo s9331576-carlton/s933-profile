@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Saint - Full-Stack Developer Nairobi">
+    <meta name="author" content="Saint">
+    <title>Contact Saint | Full-Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind CDN Configuration (same as other pages)
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        accent: '#00D4FF',
+                    }
+                }
+            }
+        }
+
+        function toggleDarkMode() {
+            const html = document.documentElement
+            html.classList.toggle('dark')
+            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light'
+            
+            const moonIcon = document.getElementById('moon-icon')
+            const sunIcon = document.getElementById('sun-icon')
+            if (moonIcon && sunIcon) {
+                if (html.classList.contains('dark')) {
+                    moonIcon.classList.remove('hidden')
+                    sunIcon.classList.add('hidden')
+                } else {
+                    moonIcon.classList.add('hidden')
+                    sunIcon.classList.remove('hidden')
+                }
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu')
+            menu.classList.toggle('hidden')
+        }
+
+        // Handle contact form
+        function handleSubmit(e) {
+            e.preventDefault()
+            const form = e.target
+            const btn = form.querySelector('button')
+            
+            const originalText = btn.innerHTML
+            btn.innerHTML = `
+                <svg class="animate-spin h-5 w-5 text-slate-950 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                </svg>
+            `
+            // Simulate network delay
+            setTimeout(() => {
+                alert("✅ Message received! I'll get back to you within 24 hours.")
+                form.reset()
+                btn.innerHTML = originalText
+            }, 1400)
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.theme === 'light') {
+                document.documentElement.classList.remove('dark')
+            } else {
+                document.documentElement.classList.add('dark')
+            }
+            
+            const moonIcon = document.getElementById('moon-icon')
+            const sunIcon = document.getElementById('sun-icon')
+            if (moonIcon && sunIcon) {
+                if (document.documentElement.classList.contains('dark')) {
+                    moonIcon.classList.remove('hidden')
+                    sunIcon.classList.add('hidden')
+                } else {
+                    moonIcon.classList.add('hidden')
+                    sunIcon.classList.remove('hidden')
+                }
+            }
+        })
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Space+Grotesk:wght@500&amp;display=swap');
+        body { font-family: 'Inter', system_ui, sans-serif; }
+        .heading-font { font-family: 'Space Grotesk', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200">
+    <!-- NAVBAR (identical) -->
+    <nav class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-lg border-b border-slate-800">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="px-6 py-5 flex items-center justify-between">
+                <a href="index.html" class="flex items-center gap-x-2 group">
+                    <div class="w-8 h-8 rounded-2xl bg-[#00D4FF] flex items-center justify-center text-slate-950 font-bold text-2xl leading-none pt-0.5 group-hover:rotate-12 transition-transform">S</div>
+                    <span class="heading-font text-3xl font-medium tracking-[-1px]">Saint</span>
+                </a>
+
+                <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+                    <a href="index.html" class="navbar-link hover:text-[#00D4FF] transition-colors">Home</a>
+                    <a href="about.html" class="navbar-link hover:text-[#00D4FF] transition-colors">About</a>
+                    <a href="contact.html" class="navbar-link text-[#00D4FF] border-b-2 border-[#00D4FF] pb-1">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-x-4">
+                    <button onclick="toggleDarkMode()" class="w-9 h-9 flex items-center justify-center rounded-2xl hover:bg-slate-800 transition-colors">
+                        <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.25">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                        </svg>
+                        <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.25">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                        </svg>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="md:hidden w-9 h-9 flex items-center justify-center rounded-2xl hover:bg-slate-800 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="mobile-menu" class="hidden md:hidden px-6 pb-6 border-t border-slate-800">
+                <div class="flex flex-col gap-y-4 text-sm font-medium pt-4">
+                    <a href="index.html" class="px-4 py-3 hover:bg-slate-800 rounded-3xl">Home</a>
+                    <a href="about.html" class="px-4 py-3 hover:bg-slate-800 rounded-3xl">About Me</a>
+                    <a href="contact.html" class="px-4 py-3 hover:bg-slate-800 rounded-3xl text-[#00D4FF]">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-screen-2xl mx-auto px-6 py-16 grid lg:grid-cols-12 gap-16">
+        <!-- Contact Form -->
+        <div class="lg:col-span-7">
+            <h1 class="text-5xl heading-font tracking-[-1px] mb-3">Let's build something together</h1>
+            <p class="text-slate-400 text-xl mb-10">Whether you have a project, a question, or just want to say hi — I'm always happy to connect.</p>
+            
+            <form onsubmit="handleSubmit(event)" class="space-y-8">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="text-xs uppercase font-medium text-slate-400 block mb-2">Your name</label>
+                        <input type="text" required 
+                               class="w-full bg-slate-900 border border-slate-700 focus:border-[#00D4FF] rounded-3xl px-6 py-6 outline-none transition-colors">
+                    </div>
+                    <div>
+                        <label class="text-xs uppercase font-medium text-slate-400 block mb-2">Email address</label>
+                        <input type="email" required 
+                               class="w-full bg-slate-900 border border-slate-700 focus:border-[#00D4FF] rounded-3xl px-6 py-6 outline-none transition-colors">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="text-xs uppercase font-medium text-slate-400 block mb-2">Subject</label>
+                    <input type="text" required placeholder="Project inquiry / Collaboration / Coffee chat"
+                           class="w-full bg-slate-900 border border-slate-700 focus:border-[#00D4FF] rounded-3xl px-6 py-6 outline-none transition-colors">
+                </div>
+                
+                <div>
+                    <label class="text-xs uppercase font-medium text-slate-400 block mb-2">Message</label>
+                    <textarea required rows="7"
+                              class="w-full bg-slate-900 border border-slate-700 focus:border-[#00D4FF] rounded-3xl px-6 py-6 outline-none resize-none transition-colors"></textarea>
+                </div>
+                
+                <button type="submit"
+                        class="w-full md:w-auto px-12 py-6 bg-[#00D4FF] hover:bg-cyan-300 text-slate-950 font-semibold text-lg rounded-3xl flex items-center justify-center gap-x-3 transition-all">
+                    Send Message
+                    <span class="text-2xl">→</span>
+                </button>
+            </form>
+        </div>
+        
+        <!-- Direct Contact Info -->
+        <div class="lg:col-span-5">
+            <div class="sticky top-8">
+                <div class="bg-slate-900 rounded-3xl p-8 lg:p-10">
+                    <h3 class="text-2xl mb-8">Or reach me directly</h3>
+                    
+                    <div class="space-y-8">
+                        <a href="mailto:hello@saint.dev" 
+                           class="flex items-center gap-x-6 group">
+                            <div class="w-12 h-12 flex-shrink-0 bg-[#00D4FF]/10 text-[#00D4FF] rounded-2xl flex items-center justify-center">✉️</div>
+                            <div class="flex-1">
+                                <div class="text-sm text-slate-400">Email</div>
+                                <div class="text-2xl group-hover:text-[#00D4FF] transition-colors">hello@saint.dev</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://linkedin.com/in/saintdev" target="_blank" 
+                           class="flex items-center gap-x-6 group">
+                            <div class="w-12 h-12 flex-shrink-0 bg-[#00D4FF]/10 text-[#00D4FF] rounded-2xl flex items-center justify-center text-3xl">in</div>
+                            <div class="flex-1">
+                                <div class="text-sm text-slate-400">LinkedIn</div>
+                                <div class="text-2xl group-hover:text-[#00D4FF] transition-colors">/in/saintdev</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://github.com/saintdev" target="_blank" 
+                           class="flex items-center gap-x-6 group">
+                            <div class="w-12 h-12 flex-shrink-0 bg-[#00D4FF]/10 text-[#00D4FF] rounded-2xl flex items-center justify-center text-3xl">🐙</div>
+                            <div class="flex-1">
+                                <div class="text-sm text-slate-400">GitHub</div>
+                                <div class="text-2xl group-hover:text-[#00D4FF] transition-colors">@saintdev</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://x.com/saintdev" target="_blank" 
+                           class="flex items-center gap-x-6 group">
+                            <div class="w-12 h-12 flex-shrink-0 bg-[#00D4FF]/10 text-[#00D4FF] rounded-2xl flex items-center justify-center text-3xl">𝕏</div>
+                            <div class="flex-1">
+                                <div class="text-sm text-slate-400">X / Twitter</div>
+                                <div class="text-2xl group-hover:text-[#00D4FF] transition-colors">@saintdev</div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-12 pt-8 border-t border-slate-700 flex items-center gap-x-3">
+                        <div class="text-4xl">🇰🇪</div>
+                        <div>
+                            <div class="text-sm text-slate-400">Based in</div>
+                            <div class="text-xl">Nairobi, Kenya</div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-xs text-slate-400 mt-8">
+                        I typically reply within 24 hours.<br>
+                        Looking forward to hearing from you!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER (identical) -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-16">
+        <div class="max-w-screen-2xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-y-10">
+                <div class="md:col-span-5">
+                    <div class="flex items-center gap-x-2 mb-6">
+                        <div class="w-8 h-8 rounded-2xl bg-[#00D4FF] flex items-center justify-center text-slate-950 text-3xl">S</div>
+                        <span class="heading-font text-3xl">Saint</span>
+                    </div>
+                    <p class="text-slate-400 max-w-xs">Full-Stack Developer crafting premium digital experiences in Nairobi, Kenya.</p>
+                    <p class="text-xs text-slate-500 mt-8">© 2026 Saint. All rights reserved.</p>
+                </div>
+                <div class="md:col-span-2">
+                    <div class="uppercase text-xs tracking-widest mb-4 text-slate-400">Navigation</div>
+                    <div class="flex flex-col gap-y-3 text-sm">
+                        <a href="index.html" class="hover:text-[#00D4FF]">Home</a>
+                        <a href="about.html" class="hover:text-[#00D4FF]">About</a>
+                        <a href="contact.html" class="hover:text-[#00D4FF]">Contact</a>
+                    </div>
+                </div>
+                <div class="md:col-span-2">
+                    <div class="uppercase text-xs tracking-widest mb-4 text-slate-400">Social</div>
+                    <div class="flex flex-col gap-y-3 text-sm">
+                        <a href="https://github.com/saintdev" target="_blank" class="hover:text-[#00D4FF]">GitHub</a>
+                        <a href="https://linkedin.com/in/saintdev" target="_blank" class="hover:text-[#00D4FF]">LinkedIn</a>
+                        <a href="https://x.com/saintdev" target="_blank" class="hover:text-[#00D4FF]">X / Twitter</a>
+                        <a href="https://instagram.com/saintdev" target="_blank" class="hover:text-[#00D4FF]">Instagram</a>
+                    </div>
+                </div>
+                <div class="md:col-span-3">
+                    <div class="uppercase text-xs tracking-widest mb-4 text-slate-400">Get in touch</div>
+                    <a href="mailto:hello@saint.dev" class="block text-[#00D4FF] text-2xl hover:underline">hello@saint.dev</a>
+                    <p class="mt-8 text-xs leading-relaxed text-slate-400">Currently open to freelance projects, full-time roles, and speaking opportunities in East Africa.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

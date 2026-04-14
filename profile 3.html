@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Saint - Full-Stack Developer based in Nairobi, Kenya. Building digital experiences that matter.">
+    <meta name="author" content="Saint">
+    <title>Saint | Full-Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind CDN Configuration
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        accent: '#00D4FF',
+                    }
+                }
+            }
+        }
+
+        // Dark mode toggle with persistence
+        function toggleDarkMode() {
+            const html = document.documentElement
+            html.classList.toggle('dark')
+            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light'
+            
+            // Update toggle icons
+            const moonIcon = document.getElementById('moon-icon')
+            const sunIcon = document.getElementById('sun-icon')
+            if (moonIcon && sunIcon) {
+                if (html.classList.contains('dark')) {
+                    moonIcon.classList.remove('hidden')
+                    sunIcon.classList.add('hidden')
+                } else {
+                    moonIcon.classList.add('hidden')
+                    sunIcon.classList.remove('hidden')
+                }
+            }
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu')
+            menu.classList.toggle('hidden')
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set dark mode by default (or respect saved preference)
+            if (localStorage.theme === 'light') {
+                document.documentElement.classList.remove('dark')
+            } else {
+                document.documentElement.classList.add('dark')
+            }
+            
+            // Set correct icons on load
+            const moonIcon = document.getElementById('moon-icon')
+            const sunIcon = document.getElementById('sun-icon')
+            if (moonIcon && sunIcon) {
+                if (document.documentElement.classList.contains('dark')) {
+                    moonIcon.classList.remove('hidden')
+                    sunIcon.classList.add('hidden')
+                } else {
+                    moonIcon.classList.add('hidden')
+                    sunIcon.classList.remove('hidden')
+                }
+            }
+            
+            console.log('%c✅ Saint Portfolio loaded successfully!', 'color:#00D4FF; font-family:monospace; font-size:12px')
+        })
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Space+Grotesk:wght@500&amp;display=swap');
+        
+        :root {
+            --accent: #00D4FF;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .navbar-link {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hero-glow {
+            animation: heroGlow 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes heroGlow {
+            from { filter: drop-shadow(0 0 20px #00D4FF); }
+            to { filter: drop-shadow(0 0 40px #00D4FF); }
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 25px 25px 0 -10px #00D4FF;
+        }
+        
+        .section-title {
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: #00D4FF;
+            bottom: -4px;
+            left: 0;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200">
+    <!-- NAVBAR -->
+    <nav class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-lg border-b border-slate-800">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="px-6 py-5 flex items-center justify-between">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-x-2 group">
+                    <div class="w-8 h-8 rounded-2xl bg-[#00D4FF] flex items-center justify-center text-slate-950 font-bold text-2xl leading-none pt-0.5 group-hover:rotate-12 transition-transform">S</div>
+                    <span class="heading-font text-3xl font-medium tracking-[-1px]">Saint</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+                    <a href="index.html" class="navbar-link text-[#00D4FF] border-b-2 border-[#00D4FF] pb-1">Home</a>
+                    <a href="about.html" class="navbar-link hover:text-[#00D4FF] transition-colors">About</a>
+                    <a href="contact.html" class="navbar-link hover:text-[#00D4FF] transition-colors">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-x-4">
+                    <!-- Dark/Light Toggle -->
+                    <button onclick="toggleDarkMode()" 
+                            class="w-9 h-9 flex items-center justify-center rounded-2xl hover:bg-slate-800 transition-colors">
+                        <!-- Moon -->
+                        <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.25">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                        </svg>
+                        <!-- Sun -->
+                        <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.25">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                        </svg>
+                    </button>
+
+                    <!-- Mobile Hamburger -->
+                    <button onclick="toggleMobileMenu()" 
+                            class="md:hidden w-9 h-9 flex items-center justify-center rounded-2xl hover:bg-slate-800 transition-colors">
+                        <svg id="hamburger" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden px-6 pb-6 border-t border-slate-800">
+                <div class="flex flex-col gap-y-4 text-sm font-medium pt-4">
+                    <a href="index.html" class="px-4 py-3 hover:bg-slate-800 rounded-3xl text-[#00D4FF]">Home</a>
+                    <a href="about.html" class="px-4 py-3 hover:bg-slate-800 rounded-3xl">About Me</a>
+                    <a href="contact.html" class="px-4 py-3 hover:bg-slate-800 rounded-3xl">Get In Touch</a>
+                    
+                    <div class="pt-4 border-t border-slate-800 text-xs uppercase tracking-widest text-slate-400">
+                        Based in Nairobi, Kenya 🇰🇪
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="min-h-screen flex items-center pt-16 pb-20">
+        <div class="max-w-screen-2xl mx-auto px-6 grid md:grid-cols-12 gap-12 items-center">
+            <!-- Left Content -->
+            <div class="md:col-span-7">
+                <div class="inline-flex items-center gap-x-2 bg-slate-900 text-slate-400 text-sm font-medium px-5 py-2 rounded-3xl mb-6 border border-slate-700">
+                    <div class="w-2 h-2 bg-[#00D4FF] rounded-full animate-pulse"></div>
+                    NAIROBI, KENYA
+                </div>
+                
+                <h1 class="text-6xl md:text-7xl font-medium heading-font tracking-[-2px] leading-none mb-4">
+                    Hi, I'm <span class="text-[#00D4FF]">Saint</span>
+                </h1>
+                
+                <div class="flex items-center gap-x-3 mb-6">
+                    <div class="h-px w-12 bg-[#00D4FF]"></div>
+                    <p class="text-2xl md:text-3xl text-slate-400">Full-Stack Developer</p>
+                </div>
+                
+                <p class="text-3xl md:text-4xl font-light text-slate-300 max-w-lg leading-tight mb-10">
+                    Building digital experiences that matter
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="about.html" 
+                       class="px-8 py-5 bg-white text-slate-950 hover:bg-[#00D4FF] hover:text-white font-medium rounded-3xl flex items-center gap-x-3 transition-all group">
+                        About Me
+                        <span class="text-xl group-active:rotate-45 transition-transform">→</span>
+                    </a>
+                    
+                    <a href="contact.html" 
+                       class="px-8 py-5 border-2 border-[#00D4FF] text-[#00D4FF] hover:bg-[#00D4FF] hover:text-slate-950 font-medium rounded-3xl flex items-center transition-all">
+                        Get In Touch
+                    </a>
+                </div>
+                
+                <div class="mt-16 flex items-center gap-x-8 text-sm">
+                    <div class="flex -space-x-4">
+                        <div class="w-8 h-8 bg-[#00D4FF] rounded-2xl ring-2 ring-slate-950 flex items-center justify-center text-xs font-bold text-slate-950">R</div>
+                        <div class="w-8 h-8 bg-emerald-400 rounded-2xl ring-2 ring-slate-950 flex items-center justify-center text-xs font-bold text-slate-950">N</div>
+                        <div class="w-8 h-8 bg-amber-400 rounded-2xl ring-2 ring-slate-950 flex items-center justify-center text-xs font-bold text-slate-950">P</div>
+                    </div>
+                    <p class="text-slate-400 max-w-[180px] leading-tight">
+                        Trusted by startups &amp; agencies across East Africa
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Profile Photo -->
+            <div class="md:col-span-5 flex justify-center md:justify-end">
+                <div class="relative">
+                    <div class="absolute -inset-6 bg-[#00D4FF] opacity-10 rounded-[4rem] rotate-6"></div>
+                    <img src="https://picsum.photos/id/1015/800/800" 
+                         alt="Saint - Full-Stack Developer"
+                         class="w-80 md:w-96 h-80 md:h-96 object-cover rounded-3xl shadow-2xl border-8 border-slate-900 hero-glow">
+                    <div class="absolute -bottom-3 -right-3 bg-slate-900 text-white text-sm font-medium px-6 py-3 rounded-3xl shadow-xl flex items-center gap-x-2">
+                        <span class="relative flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                        </span>
+                        Available for freelance
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- FEATURED SKILLS -->
+    <section class="py-20 bg-slate-900">
+        <div class="max-w-screen-2xl mx-auto px-6">
+            <div class="flex justify-between items-baseline mb-12">
+                <h2 class="section-title text-4xl heading-font tracking-[-1px]">Featured Skills</h2>
+                <a href="about.html" class="text-[#00D4FF] flex items-center gap-x-1 text-sm font-medium hover:gap-x-3 transition-all">
+                    View all skills 
+                    <span class="text-xl">→</span>
+                </a>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                <!-- Skill 1 -->
+                <div class="card-hover bg-slate-800 rounded-3xl p-8 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 bg-[#00D4FF]/10 text-[#00D4FF] rounded-2xl flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M10 20l4-16m4 4l4 4-4 4M6 4L2 8l4 4" />
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-xl mb-1">React</h4>
+                    <p class="text-slate-400 text-sm">Modern UI libraries</p>
+                </div>
+                
+                <!-- Skill 2 -->
+                <div class="card-hover bg-slate-800 rounded-3xl p-8 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 bg-[#00D4FF]/10 text-[#00D4FF] rounded-2xl flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.502 5.502 0 00-10.78 2.22A4.5 4.5 0 003 15z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-xl mb-1">Tailwind CSS</h4>
+                    <p class="text-slate-400 text-sm">Rapid styling</p>
+                </div>
+                
+                <!-- Skill 3 -->
+                <div class="card-hover bg-slate-800 rounded-3xl p-8 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 bg-[#00D4FF]/10 text-[#00D4FF] rounded-2xl flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2 2 2 0 01-2-2 2 2 0 012-2 2 2 0 01-2-2 2 2 0 012-2z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-xl mb-1">Node.js</h4>
+                    <p class="text-slate-400 text-sm">Backend &amp; APIs</p>
+                </div>
+                
+                <!-- Skill 4 -->
+                <div class="card-hover bg-slate-800 rounded-3xl p-8 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 bg-[#00D4FF]/10 text-[#00D4FF] rounded-2xl flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2v-2a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h10a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2" />
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-xl mb-1">Python</h4>
+                    <p class="text-slate-400 text-sm">Data &amp; AI</p>
+                </div>
+                
+                <!-- Skill 5 -->
+                <div class="card-hover bg-slate-800 rounded-3xl p-8 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 bg-[#00D4FF]/10 text-[#00D4FF] rounded-2xl flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 10l4.553-2.276L20 10V18H4V6L8.553 3.724 12 6 15.447 3.724 20 6" />
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-xl mb-1">Figma</h4>
+                    <p class="text-slate-400 text-sm">UI/UX Design</p>
+                </div>
+                
+                <!-- Skill 6 -->
+                <div class="card-hover bg-slate-800 rounded-3xl p-8 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 bg-[#00D4FF]/10 text-[#00D4FF] rounded-2xl flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M3 8l7.89 5.26a2.01 2.01 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2" />
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-xl mb-1">TypeScript</h4>
+                    <p class="text-slate-400 text-sm">Type safety</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED PROJECTS -->
+    <section class="py-20">
+        <div class="max-w-screen-2xl mx-auto px-6">
+            <div class="flex justify-between items-baseline mb-12">
+                <h2 class="section-title text-4xl heading-font tracking-[-1px]">Featured Projects</h2>
+                <a href="https://github.com/saintdev" target="_blank" 
+                   class="text-[#00D4FF] flex items-center gap-x-1 text-sm font-medium hover:gap-x-3 transition-all">
+                    See all on GitHub 
+                    <span class="text-xl">→</span>
+                </a>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="card-hover bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden">
+                    <img src="https://picsum.photos/id/1015/800/600" 
+                         alt="SmartFarm Project"
+                         class="w-full h-56 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-semibold mb-2">SmartFarm</h3>
+                        <p class="text-slate-400 mb-6 line-clamp-3">
+                            IoT dashboard helping Kenyan smallholder farmers monitor soil, weather, and crop health in real time.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex gap-x-2">
+                                <span class="text-xs bg-slate-800 px-4 py-2 rounded-3xl">React</span>
+                                <span class="text-xs bg-slate-800 px-4 py-2 rounded-3xl">Node.js</span>
+                            </div>
+                            <div class="flex gap-x-4">
+                                <a href="https://github.com/saintdev/smartfarm" target="_blank"
+                                   class="text-[#00D4FF] hover:underline text-sm flex items-center">GitHub →</a>
+                                <a href="https://smartfarm-demo.netlify.app" target="_blank"
+                                   class="bg-[#00D4FF] text-slate-950 px-5 py-2 text-sm rounded-3xl font-medium">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="card-hover bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden">
+                    <img src="https://picsum.photos/id/29/800/600" 
+                         alt="ConnectKenya Project"
+                         class="w-full h-56 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-semibold mb-2">ConnectKenya</h3>
+                        <p class="text-slate-400 mb-6 line-clamp-3">
+                            Professional networking platform built for Nairobi’s tech ecosystem. 3k+ active users.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex gap-x-2">
+                                <span class="text-xs bg-slate-800 px-4 py-2 rounded-3xl">Next.js</span>
+                                <span class="text-xs bg-slate-800 px-4 py-2 rounded-3xl">PostgreSQL</span>
+                            </div>
+                            <div class="flex gap-x-4">
+                                <a href="https://github.com/saintdev/connectkenya" target="_blank"
+                                   class="text-[#00D4FF] hover:underline text-sm flex items-center">GitHub →</a>
+                                <a href="https://connectkenya.vercel.app" target="_blank"
+                                   class="bg-[#00D4FF] text-slate-950 px-5 py-2 text-sm rounded-3xl font-medium">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="card-hover bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden">
+                    <img src="https://picsum.photos/id/201/800/600" 
+                         alt="BudgetWise Project"
+                         class="w-full h-56 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-semibold mb-2">BudgetWise</h3>
+                        <p class="text-slate-400 mb-6 line-clamp-3">
+                            AI-powered personal finance tracker with predictive budgeting for East African users.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex gap-x-2">
+                                <span class="text-xs bg-slate-800 px-4 py-2 rounded-3xl">TypeScript</span>
+                                <span class="text-xs bg-slate-800 px-4 py-2 rounded-3xl">Python</span>
+                            </div>
+                            <div class="flex gap-x-4">
+                                <a href="https://github.com/saintdev/budgetwise" target="_blank"
+                                   class="text-[#00D4FF] hover:underline text-sm flex items-center">GitHub →</a>
+                                <a href="https://budgetwise-demo.com" target="_blank"
+                                   class="bg-[#00D4FF] text-slate-950 px-5 py-2 text-sm rounded-3xl font-medium">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIAL / WHY WORK WITH ME TEASER -->
+    <section class="py-20 bg-slate-900 border-t border-b border-slate-800">
+        <div class="max-w-screen-2xl mx-auto px-6">
+            <div class="max-w-2xl mx-auto text-center">
+                <p class="italic text-2xl text-slate-300 mb-8">
+                    “Saint doesn’t just write code — he builds products that feel alive. 
+                    Working with him on ConnectKenya was a game changer.”
+                </p>
+                <div class="flex items-center justify-center gap-x-4">
+                    <div class="w-10 h-10 bg-slate-700 rounded-2xl"></div>
+                    <div>
+                        <div class="font-medium">Wanjiku Mwangi</div>
+                        <div class="text-xs text-slate-400">Founder, TechAfrica Hub</div>
+                    </div>
+                </div>
+                <a href="contact.html" 
+                   class="mt-12 inline-flex items-center gap-x-3 text-[#00D4FF] text-sm font-medium hover:gap-x-5 transition-all">
+                    Ready to build something great together? 
+                    <span class="text-3xl leading-none">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-16">
+        <div class="max-w-screen-2xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-y-10">
+                <div class="md:col-span-5">
+                    <div class="flex items-center gap-x-2 mb-6">
+                        <div class="w-8 h-8 rounded-2xl bg-[#00D4FF] flex items-center justify-center text-slate-950 text-3xl">S</div>
+                        <span class="heading-font text-3xl">Saint</span>
+                    </div>
+                    <p class="text-slate-400 max-w-xs">
+                        Full-Stack Developer crafting premium digital experiences in Nairobi, Kenya.
+                    </p>
+                    <p class="text-xs text-slate-500 mt-8">© 2026 Saint. All rights reserved.</p>
+                </div>
+                
+                <div class="md:col-span-2">
+                    <div class="uppercase text-xs tracking-widest mb-4 text-slate-400">Navigation</div>
+                    <div class="flex flex-col gap-y-3 text-sm">
+                        <a href="index.html" class="hover:text-[#00D4FF]">Home</a>
+                        <a href="about.html" class="hover:text-[#00D4FF]">About</a>
+                        <a href="contact.html" class="hover:text-[#00D4FF]">Contact</a>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-2">
+                    <div class="uppercase text-xs tracking-widest mb-4 text-slate-400">Social</div>
+                    <div class="flex flex-col gap-y-3 text-sm">
+                        <a href="https://github.com/saintdev" target="_blank" class="hover:text-[#00D4FF]">GitHub</a>
+                        <a href="https://linkedin.com/in/saintdev" target="_blank" class="hover:text-[#00D4FF]">LinkedIn</a>
+                        <a href="https://x.com/saintdev" target="_blank" class="hover:text-[#00D4FF]">X / Twitter</a>
+                        <a href="https://instagram.com/saintdev" target="_blank" class="hover:text-[#00D4FF]">Instagram</a>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-3">
+                    <div class="uppercase text-xs tracking-widest mb-4 text-slate-400">Get in touch</div>
+                    <a href="mailto:hello@saint.dev" class="block text-[#00D4FF] text-2xl hover:underline">hello@saint.dev</a>
+                    <p class="mt-8 text-xs leading-relaxed text-slate-400">
+                        Currently open to freelance projects, full-time roles, and speaking opportunities in East Africa.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

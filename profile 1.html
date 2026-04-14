@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Saint - Full-Stack Developer in Nairobi, Kenya">
+    <meta name="author" content="Saint">
+    <title>About Saint | Full-Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind CDN Configuration (same as index)
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        accent: '#00D4FF',
+                    }
+                }
+            }
+        }
+
+        function toggleDarkMode() {
+            const html = document.documentElement
+            html.classList.toggle('dark')
+            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light'
+            
+            const moonIcon = document.getElementById('moon-icon')
+            const sunIcon = document.getElementById('sun-icon')
+            if (moonIcon && sunIcon) {
+                if (html.classList.contains('dark')) {
+                    moonIcon.classList.remove('hidden')
+                    sunIcon.classList.add('hidden')
+                } else {
+                    moonIcon.classList.add('hidden')
+                    sunIcon.classList.remove('hidden')
+                }
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu')
+            menu.classList.toggle('hidden')
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.theme === 'light') {
+                document.documentElement.classList.remove('dark')
+            } else {
+                document.documentElement.classList.add('dark')
+            }
+            
+            const moonIcon = document.getElementById('moon-icon')
+            const sunIcon = document.getElementById('sun-icon')
+            if (moonIcon && sunIcon) {
+                if (document.documentElement.classList.contains('dark')) {
+                    moonIcon.classList.remove('hidden')
+                    sunIcon.classList.add('hidden')
+                } else {
+                    moonIcon.classList.add('hidden')
+                    sunIcon.classList.remove('hidden')
+                }
+            }
+        })
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Space+Grotesk:wght@500&amp;display=swap');
+        
+        body { font-family: 'Inter', system_ui, sans-serif; }
+        .heading-font { font-family: 'Space Grotesk', sans-serif; }
+        
+        .timeline-dot {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200">
+    <!-- NAVBAR (identical to index.html) -->
+    <nav class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-lg border-b border-slate-800">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="px-6 py-5 flex items-center justify-between">
+                <a href="index.html" class="flex items-center gap-x-2 group">
+                    <div class="w-8 h-8 rounded-2xl bg-[#00D4FF] flex items-center justify-center text-slate-950 font-bold text-2xl leading-none pt-0.5 group-hover:rotate-12 transition-transform">S</div>
+                    <span class="heading-font text-3xl font-medium tracking-[-1px]">Saint</span>
+                </a>
+
+                <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+                    <a href="index.html" class="navbar-link hover:text-[#00D4FF] transition-colors">Home</a>
+                    <a href="about.html" class="navbar-link text-[#00D4FF] border-b-2 border-[#00D4FF] pb-1">About</a>
+                    <a href="contact.html" class="navbar-link hover:text-[#00D4FF] transition-colors">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-x-4">
+                    <button onclick="toggleDarkMode()" class="w-9 h-9 flex items-center justify-center rounded-2xl hover:bg-slate-800 transition-colors">
+                        <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.25">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                        </svg>
+                        <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.25">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                        </svg>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="md:hidden w-9 h-9 flex items-center justify-center rounded-2xl hover:bg-slate-800 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="mobile-menu" class="hidden md:hidden px-6 pb-6 border-t border-slate-800">
+                <div class="flex flex-col gap-y-4 text-sm font-medium pt-4">
+                    <a href="index.html" class="px-4 py-3 hover:bg-slate-800 rounded-3xl">Home</a>
+                    <a href="about.html" class="px-4 py-3 hover:bg-slate-800 rounded-3xl text-[#00D4FF]">About Me</a>
+                    <a href="contact.html" class="px-4 py-3 hover:bg-slate-800 rounded-3xl">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-screen-2xl mx-auto px-6 pt-16">
+        <!-- Full Bio -->
+        <div class="max-w-3xl mx-auto">
+            <h1 class="text-5xl heading-font tracking-[-1px] mb-8">Hi, I'm Saint.</h1>
+            <div class="prose prose-invert text-lg leading-relaxed text-slate-300">
+                <p>Passionate full-stack developer based in Nairobi, Kenya. Specializing in modern web technologies, I create responsive and user-centric applications that solve real problems for businesses and communities across East Africa.</p>
+                <p>With a background in computer science and hands-on experience building scalable platforms, I thrive on turning complex ideas into clean, performant digital products. Whether it's an IoT dashboard for farmers or a professional networking platform for Nairobi's tech scene, I love building solutions that have real impact.</p>
+                <p>When I'm not coding, you'll find me exploring Nairobi's vibrant tech ecosystem, mentoring junior developers, or experimenting with AI tools to make development faster and more accessible.</p>
+            </div>
+        </div>
+
+        <!-- Experience Timeline -->
+        <div class="mt-24">
+            <h2 class="section-title text-4xl heading-font tracking-[-1px] mb-12">Experience</h2>
+            
+            <div class="space-y-12">
+                <!-- Exp 1 -->
+                <div class="flex gap-8">
+                    <div class="w-28 text-right text-slate-400 text-sm font-medium shrink-0">
+                        2023 — Present
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="font-semibold text-2xl">Full-Stack Developer</div>
+                                <div class="text-[#00D4FF]">Innovate Labs • Nairobi</div>
+                            </div>
+                            <div class="px-5 py-1 text-xs rounded-3xl bg-emerald-400/10 text-emerald-400 border border-emerald-400/30">Full-time</div>
+                        </div>
+                        <p class="mt-4 text-slate-400">Led end-to-end development of 7+ client projects. Architected and delivered a real-time IoT platform used by 1,200+ smallholder farmers. Improved application performance by 65% through optimized React and Node.js architecture.</p>
+                        <div class="flex gap-2 mt-6">
+                            <span class="text-xs px-4 py-2 bg-slate-800 rounded-3xl">React</span>
+                            <span class="text-xs px-4 py-2 bg-slate-800 rounded-3xl">Node.js</span>
+                            <span class="text-xs px-4 py-2 bg-slate-800 rounded-3xl">AWS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exp 2 -->
+                <div class="flex gap-8">
+                    <div class="w-28 text-right text-slate-400 text-sm font-medium shrink-0">
+                        2021 — 2023
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="font-semibold text-2xl">Frontend Developer</div>
+                                <div class="text-[#00D4FF]">Digital Solutions Ltd • Nairobi</div>
+                            </div>
+                            <div class="px-5 py-1 text-xs rounded-3xl bg-blue-400/10 text-blue-400 border border-blue-400/30">Full-time</div>
+                        </div>
+                        <p class="mt-4 text-slate-400">Designed and built responsive web interfaces for 12 enterprise clients. Collaborated directly with design and product teams to ship pixel-perfect UIs using Tailwind CSS and Next.js.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="mt-24">
+            <h2 class="section-title text-4xl heading-font tracking-[-1px] mb-12">Education</h2>
+            <div class="bg-slate-900 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row gap-8 md:items-center">
+                <div class="md:w-48 text-sm font-medium text-slate-400">2018 — 2022</div>
+                <div class="flex-1">
+                    <div class="text-3xl font-medium">Bachelor of Science in Computer Science</div>
+                    <div class="text-[#00D4FF] text-xl">University of Nairobi</div>
+                    <p class="mt-4 text-slate-400">First Class Honors • Graduated top 5% of class. Thesis on “Real-time IoT systems for small-scale agriculture in Kenya”.</p>
+                </div>
+                <div class="text-emerald-400 text-xs font-medium self-start md:self-center px-6 py-2 border border-emerald-400/30 rounded-3xl">First Class Honours</div>
+            </div>
+        </div>
+
+        <!-- Detailed Skills -->
+        <div class="mt-24 mb-20">
+            <h2 class="section-title text-4xl heading-font tracking-[-1px] mb-12">Skills &amp; Tools</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-slate-900 rounded-3xl p-8">React / Next.js</div>
+                <div class="bg-slate-900 rounded-3xl p-8">TypeScript</div>
+                <div class="bg-slate-900 rounded-3xl p-8">Tailwind CSS</div>
+                <div class="bg-slate-900 rounded-3xl p-8">Node.js + Express</div>
+                <div class="bg-slate-900 rounded-3xl p-8">Python + FastAPI</div>
+                <div class="bg-slate-900 rounded-3xl p-8">PostgreSQL / MongoDB</div>
+                <div class="bg-slate-900 rounded-3xl p-8">Figma + Framer</div>
+                <div class="bg-slate-900 rounded-3xl p-8">AWS / Docker / Git</div>
+                <div class="bg-slate-900 rounded-3xl p-8">AI &amp; Machine Learning basics</div>
+                <div class="bg-slate-900 rounded-3xl p-8">Mobile-first design</div>
+                <div class="bg-slate-900 rounded-3xl p-8">Performance optimization</div>
+                <div class="bg-slate-900 rounded-3xl p-8">Mentoring &amp; technical writing</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER (identical to index.html) -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-16">
+        <div class="max-w-screen-2xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-y-10">
+                <div class="md:col-span-5">
+                    <div class="flex items-center gap-x-2 mb-6">
+                        <div class="w-8 h-8 rounded-2xl bg-[#00D4FF] flex items-center justify-center text-slate-950 text-3xl">S</div>
+                        <span class="heading-font text-3xl">Saint</span>
+                    </div>
+                    <p class="text-slate-400 max-w-xs">Full-Stack Developer crafting premium digital experiences in Nairobi, Kenya.</p>
+                    <p class="text-xs text-slate-500 mt-8">© 2026 Saint. All rights reserved.</p>
+                </div>
+                <div class="md:col-span-2">
+                    <div class="uppercase text-xs tracking-widest mb-4 text-slate-400">Navigation</div>
+                    <div class="flex flex-col gap-y-3 text-sm">
+                        <a href="index.html" class="hover:text-[#00D4FF]">Home</a>
+                        <a href="about.html" class="hover:text-[#00D4FF]">About</a>
+                        <a href="contact.html" class="hover:text-[#00D4FF]">Contact</a>
+                    </div>
+                </div>
+                <div class="md:col-span-2">
+                    <div class="uppercase text-xs tracking-widest mb-4 text-slate-400">Social</div>
+                    <div class="flex flex-col gap-y-3 text-sm">
+                        <a href="https://github.com/saintdev" target="_blank" class="hover:text-[#00D4FF]">GitHub</a>
+                        <a href="https://linkedin.com/in/saintdev" target="_blank" class="hover:text-[#00D4FF]">LinkedIn</a>
+                        <a href="https://x.com/saintdev" target="_blank" class="hover:text-[#00D4FF]">X / Twitter</a>
+                        <a href="https://instagram.com/saintdev" target="_blank" class="hover:text-[#00D4FF]">Instagram</a>
+                    </div>
+                </div>
+                <div class="md:col-span-3">
+                    <div class="uppercase text-xs tracking-widest mb-4 text-slate-400">Get in touch</div>
+                    <a href="mailto:hello@saint.dev" class="block text-[#00D4FF] text-2xl hover:underline">hello@saint.dev</a>
+                    <p class="mt-8 text-xs leading-relaxed text-slate-400">Currently open to freelance projects, full-time roles, and speaking opportunities in East Africa.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
